@@ -19,9 +19,11 @@ class FalImage {
 }
 
 class FalClient {
-  FalClient(this.apiKey);
+  FalClient([String? apiKey]) {
+    this.apiKey = apiKey ?? io.Platform.environment["FAL_API_KEY"]!;
+  }
 
-  final String apiKey;
+  late final String apiKey;
 
   Future<List<FalImage>> run(String app, Map<String, dynamic> options) async {
     final client = io.HttpClient();
