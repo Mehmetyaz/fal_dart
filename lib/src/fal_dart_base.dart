@@ -47,6 +47,11 @@ class FalClient {
 
 
     try {
+      if (jsonBody["image"] != null) {
+        return [FalImage.fromJson(jsonBody["image"])];
+      }
+
+
       return jsonBody["images"]
           .map<FalImage>((e) => FalImage.fromJson(e))
           .toList();
