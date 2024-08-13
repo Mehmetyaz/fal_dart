@@ -45,8 +45,13 @@ class FalClient {
 
     final jsonBody = jsonDecode(body);
 
-    return jsonBody["images"]
-        .map<FalImage>((e) => FalImage.fromJson(e))
-        .toList();
+
+    try {
+      return jsonBody["images"]
+          .map<FalImage>((e) => FalImage.fromJson(e))
+          .toList();
+    } catch (e) {
+      throw Exception("Failed to parse response: \nRes:$jsonBody \n$e");
+    }
   }
 }
